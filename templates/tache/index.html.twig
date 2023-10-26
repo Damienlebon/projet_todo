@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tache index{% endblock %}
+
+{% block body %}
+    <h1>Tache index</h1>
+        {% for tache in taches %}
+        <div class="card" style="width: 18rem;">
+  <div class="card-body">
+                <p>{{ tache.name }}</p>
+                <p>{{ tache.content }}</p>
+                <p>{{ tache.createAt ? tache.createAt|date('Y-m-d H:i:s') : '' }}</p>
+
+                    <a href="{{ path('app_tache_show', {'id': tache.id}) }}">show</a>
+                    <a href="{{ path('app_tache_edit', {'id': tache.id}) }}">edit</a>
+                    {{ include('tache/_delete_form.html.twig') }}      
+  </div>
+</div>
+        {% endfor %}
+    <a href="{{ path('app_liste_index') }}">Retourne à liste</a>
+    <a href="{{ path('app_tache_new') }}">Create new</a>
+{% endblock %}

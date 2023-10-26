@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste index{% endblock %}
+{% block body %}
+    <h1>Liste index</h1>
+<div class="card" style="width: 18rem;display: flex;flex-direction: row;/* justify-content: space-evenly; */gap: 20px;">
+
+  
+    {% for liste in listes %}
+    <div class="card-body" style="border: 2px solid black;width: 18rem;">
+    <img  src="{{ asset('images/listes/' ~ liste.pictureName) }}" alt="" width="250px"/>
+            <p>{{ liste.name }}</p>
+                      <a href="{{ path('app_liste_show', {'id': liste.id}) }}">Voir</a>
+                        <a href="{{ path('app_liste_edit', {'id': liste.id}) }}">Modifier</a>
+                        {{ include('liste/_delete_form.html.twig') }}
+ </div>
+            {% endfor %}
+ 
+</div>
+  
+    <a href="{{ path('app_liste_new') }}">Créer une nouvelle liste</a>
+{% endblock %}

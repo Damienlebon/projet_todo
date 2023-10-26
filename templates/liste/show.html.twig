@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste{% endblock %}
+
+
+{% block body %}
+   <div class="card-listes" style="border:2px;">
+            <div class="img-liste">
+                <img src="{{ asset('images/listes/' ~ liste.pictureName) }}" alt="" width="250px" />
+            </div>
+            <p>{{ liste.name }}</p>
+             {{ include('tache/_form.html.twig') }}
+             <div class="card-liste" style="border:2px solidblack;">
+            {% for tache in liste.taches %}
+                <p>{{ tache.name }}</p>
+                <p>{{ tache.content }}</p>
+                <a href="{{ path('app_tache_edit', {'id': tache.id}) }}">edit</a>
+                {{ include('tache/_delete_form.html.twig') }}
+            {% endfor %}
+            
+            
+            <a href="{{ path('app_liste_index') }}">Retourne à liste</a>
+            <a href="{{ path('app_tache_new') }}">Créer une nouvelle tâche</a>
+        </div>
+    </div>
+{% endblock %}
